@@ -87,59 +87,226 @@ const extraLinks = { wechat:"jangmk93", booking:"https://m.place.naver.com/hairs
 const catIcons = { 0:"〰️",1:"✦",2:"◆",3:"○",4:"▽",5:"▽",6:"△",7:"△" };
 
 /* ─── Diagnosis Questions ─── */
-const QUESTIONS = [
-  { title:"모발 굵기", sub:"평소 느끼는 모발의 굵기를 선택해주세요", key:"thickness", opts:[{l:"가늘고 힘 없음",v:"thin"},{l:"보통",v:"normal"},{l:"굵고 무거움",v:"thick"}] },
-  { title:"현재 상태", sub:"가장 가까운 현재 모발 상태는?", key:"condition", opts:[{l:"건조하고 부스스함",v:"dry"},{l:"컬이 잘 풀림",v:"curl-loss"},{l:"볼륨이 죽음",v:"flat"},{l:"정리는 되지만 밋밋함",v:"dull"}] },
-  { title:"스타일링 습관", sub:"평소 스타일링을 어느 정도 하시나요?", key:"habit", opts:[{l:"거의 안 함",v:"none"},{l:"오일만 사용",v:"oil-only"},{l:"드라이 함",v:"blowdry"},{l:"스타일링 적극적으로 함",v:"active"}] },
-  { title:"원하는 느낌", sub:"어떤 스타일을 원하시나요?", key:"desired", opts:[{l:"자연스럽고 가벼움",v:"natural"},{l:"윤기 있고 정돈됨",v:"glossy"},{l:"볼륨과 공기감",v:"volume"},{l:"컬/텍스처 강조",v:"texture"},{l:"형태 유지",v:"hold"}] },
-  { title:"머리 길이", sub:"현재 머리 길이를 선택해주세요", key:"length", opts:[{l:"짧음",v:"short"},{l:"중간",v:"medium"},{l:"김",v:"long"}] }
-];
+const QUESTIONS = {
+  ko: [
+    { title:"모발 굵기", sub:"평소 느끼는 모발의 굵기를 선택해주세요", key:"thickness", opts:[{l:"가늘고 힘 없음",v:"thin"},{l:"보통",v:"normal"},{l:"굵고 무거움",v:"thick"}] },
+    { title:"현재 상태", sub:"가장 가까운 현재 모발 상태는?", key:"condition", opts:[{l:"건조하고 부스스함",v:"dry"},{l:"컬이 잘 풀림",v:"curl-loss"},{l:"볼륨이 죽음",v:"flat"},{l:"정리는 되지만 밋밋함",v:"dull"}] },
+    { title:"스타일링 습관", sub:"평소 스타일링을 어느 정도 하시나요?", key:"habit", opts:[{l:"거의 안 함",v:"none"},{l:"오일만 사용",v:"oil-only"},{l:"드라이 함",v:"blowdry"},{l:"스타일링 적극적으로 함",v:"active"}] },
+    { title:"원하는 느낌", sub:"어떤 스타일을 원하시나요?", key:"desired", opts:[{l:"자연스럽고 가벼움",v:"natural"},{l:"윤기 있고 정돈됨",v:"glossy"},{l:"볼륨과 공기감",v:"volume"},{l:"컬/텍스처 강조",v:"texture"},{l:"형태 유지",v:"hold"}] },
+    { title:"머리 길이", sub:"현재 머리 길이를 선택해주세요", key:"length", opts:[{l:"짧음",v:"short"},{l:"중간",v:"medium"},{l:"김",v:"long"}] }
+  ],
+  en: [
+    { title:"Hair Thickness", sub:"Choose the thickness you usually notice.", key:"thickness", opts:[{l:"Thin and weak",v:"thin"},{l:"Normal",v:"normal"},{l:"Thick and heavy",v:"thick"}] },
+    { title:"Current Condition", sub:"Which best describes your hair right now?", key:"condition", opts:[{l:"Dry and frizzy",v:"dry"},{l:"Curls loosen easily",v:"curl-loss"},{l:"Volume falls flat",v:"flat"},{l:"Tidy but flat",v:"dull"}] },
+    { title:"Styling Habit", sub:"How often do you style your hair?", key:"habit", opts:[{l:"Rarely",v:"none"},{l:"Oil only",v:"oil-only"},{l:"Blow-dry",v:"blowdry"},{l:"Style actively",v:"active"}] },
+    { title:"Desired Look", sub:"What style do you prefer?", key:"desired", opts:[{l:"Natural and light",v:"natural"},{l:"Glossy and refined",v:"glossy"},{l:"Volume and airy",v:"volume"},{l:"Curl & texture focus",v:"texture"},{l:"Hold the shape",v:"hold"}] },
+    { title:"Hair Length", sub:"Please choose your current length.", key:"length", opts:[{l:"Short",v:"short"},{l:"Medium",v:"medium"},{l:"Long",v:"long"}] }
+  ],
+  zh: [
+    { title:"发质粗细", sub:"请选择您平时感受到的发质粗细", key:"thickness", opts:[{l:"细软无力",v:"thin"},{l:"适中",v:"normal"},{l:"粗硬厚重",v:"thick"}] },
+    { title:"当前状态", sub:"最接近的当前发质状态？", key:"condition", opts:[{l:"干燥蓬乱",v:"dry"},{l:"卷度容易松散",v:"curl-loss"},{l:"蓬松度塌陷",v:"flat"},{l:"整齐但平淡",v:"dull"}] },
+    { title:"造型习惯", sub:"您平时造型的频率？", key:"habit", opts:[{l:"几乎不做",v:"none"},{l:"仅使用护发油",v:"oil-only"},{l:"用吹风机",v:"blowdry"},{l:"积极造型",v:"active"}] },
+    { title:"想要的风格", sub:"您希望的造型风格？", key:"desired", opts:[{l:"自然轻盈",v:"natural"},{l:"光泽整洁",v:"glossy"},{l:"蓬松与空气感",v:"volume"},{l:"强调卷度与质感",v:"texture"},{l:"保持造型",v:"hold"}] },
+    { title:"头发长度", sub:"请选择您当前的发长", key:"length", opts:[{l:"短发",v:"short"},{l:"中长",v:"medium"},{l:"长发",v:"long"}] }
+  ],
+  ja: [
+    { title:"髪の太さ", sub:"普段感じるご自身の髪の太さをお選びください", key:"thickness", opts:[{l:"細くてハリがない",v:"thin"},{l:"普通",v:"normal"},{l:"太くて重い",v:"thick"}] },
+    { title:"現在の状態", sub:"最も近い現在の髪の状態は？", key:"condition", opts:[{l:"乾燥してパサつく",v:"dry"},{l:"カールがすぐほどける",v:"curl-loss"},{l:"ボリュームがダウン",v:"flat"},{l:"まとまるが平凡",v:"dull"}] },
+    { title:"スタイリングの習慣", sub:"普段どの程度スタイリングをされますか？", key:"habit", opts:[{l:"ほとんどしない",v:"none"},{l:"オイルのみ使用",v:"oil-only"},{l:"ドライヤーを使う",v:"blowdry"},{l:"積極的にスタイリング",v:"active"}] },
+    { title:"ご希望の仕上がり", sub:"どんなスタイルがお好みですか？", key:"desired", opts:[{l:"自然で軽やか",v:"natural"},{l:"ツヤがあり整った",v:"glossy"},{l:"ボリュームとエアリー感",v:"volume"},{l:"カール・テクスチャー強調",v:"texture"},{l:"形をキープ",v:"hold"}] },
+    { title:"髪の長さ", sub:"現在の髪の長さをお選びください", key:"length", opts:[{l:"ショート",v:"short"},{l:"ミディアム",v:"medium"},{l:"ロング",v:"long"}] }
+  ]
+};
 
 /* ─── Care Guide Data ─── */
 const CARE = {
-  perm:{ title:"펌 관리", emoji:"〰️", sub:"컬의 탄력을 오래 유지하는 방법", tips:["펌 시술 후 48시간은 머리를 감지 않는 것이 좋습니다.","샴푸 시 컬을 풀지 않도록 쥐어짜듯 감아주세요.","자연 건조 또는 디퓨저 사용을 권장합니다.","빗 대신 손가락으로 부드럽게 정리하세요.","취침 시 느슨하게 묶거나 실크 베개를 사용하면 좋습니다."], cauts:["고온 드라이로 직접 건조하면 컬이 풀릴 수 있습니다.","강한 장력으로 빗지 마세요.","펌 직후 묶거나 핀으로 고정하지 않는 것이 좋습니다."], prods:[1,2,7] },
-  color:{ title:"염색 관리", emoji:"🎨", sub:"색감을 오래 유지하는 케어 루틴", tips:["염색 후 48시간은 샴푸를 자제해주세요.","컬러 전용 샴푸와 트리트먼트를 사용하세요.","자외선은 탈색의 원인이 됩니다. 모자를 활용하세요.","뜨거운 물보다 미온수로 감는 것이 좋습니다.","주 1회 딥 트리트먼트를 권장합니다."], cauts:["염색 직후 수영장이나 바닷물에 노출되면 색이 빠질 수 있습니다.","고온 스타일링 도구 사용 시 열 보호 제품을 꼭 사용하세요.","잦은 샴푸는 색 빠짐을 촉진합니다."], prods:[2] },
-  bleach:{ title:"탈색 관리", emoji:"⚡", sub:"손상된 모발의 집중 케어", tips:["탈색 모발은 수분 보충이 가장 중요합니다.","저자극 샴푸를 사용해주세요.","매일 오일이나 세럼으로 수분을 공급하세요.","가능하면 자연 건조를 권장합니다.","정기적인 모발 트리트먼트가 필요합니다."], cauts:["추가 시술(펌, 재탈색)은 최소 2주 간격을 두세요.","고온 도구 사용을 최소화하세요.","끝이 갈라진 부분은 정기적으로 다듬어주세요."], prods:[2,7] }
+  ko: {
+    perm:{ title:"펌 관리", emoji:"〰️", sub:"컬의 탄력을 오래 유지하는 방법",
+      tips:["펌 시술 후 48시간은 머리를 감지 않는 것이 좋습니다.","샴푸 시 컬을 풀지 않도록 쥐어짜듯 감아주세요.","자연 건조 또는 디퓨저 사용을 권장합니다.","빗 대신 손가락으로 부드럽게 정리하세요.","취침 시 느슨하게 묶거나 실크 베개를 사용하면 좋습니다."],
+      cauts:["고온 드라이로 직접 건조하면 컬이 풀릴 수 있습니다.","강한 장력으로 빗지 마세요.","펌 직후 묶거나 핀으로 고정하지 않는 것이 좋습니다."], prods:[1,2,7] },
+    color:{ title:"염색 관리", emoji:"🎨", sub:"색감을 오래 유지하는 케어 루틴",
+      tips:["염색 후 48시간은 샴푸를 자제해주세요.","컬러 전용 샴푸와 트리트먼트를 사용하세요.","자외선은 탈색의 원인이 됩니다. 모자를 활용하세요.","뜨거운 물보다 미온수로 감는 것이 좋습니다.","주 1회 딥 트리트먼트를 권장합니다."],
+      cauts:["염색 직후 수영장이나 바닷물에 노출되면 색이 빠질 수 있습니다.","고온 스타일링 도구 사용 시 열 보호 제품을 꼭 사용하세요.","잦은 샴푸는 색 빠짐을 촉진합니다."], prods:[2] },
+    bleach:{ title:"탈색 관리", emoji:"⚡", sub:"손상된 모발의 집중 케어",
+      tips:["탈색 모발은 수분 보충이 가장 중요합니다.","저자극 샴푸를 사용해주세요.","매일 오일이나 세럼으로 수분을 공급하세요.","가능하면 자연 건조를 권장합니다.","정기적인 모발 트리트먼트가 필요합니다."],
+      cauts:["추가 시술(펌, 재탈색)은 최소 2주 간격을 두세요.","고온 도구 사용을 최소화하세요.","끝이 갈라진 부분은 정기적으로 다듬어주세요."], prods:[2,7] }
+  },
+  en: {
+    perm:{ title:"Perm Care", emoji:"〰️", sub:"How to keep your curls bouncy",
+      tips:["Avoid washing your hair for 48 hours after a perm.","When shampooing, scrunch gently to keep the curls.","Air dry or use a diffuser.","Use your fingers instead of a comb to gently arrange.","When sleeping, tie loosely or use a silk pillowcase."],
+      cauts:["High-heat drying can loosen the curls.","Avoid brushing with strong tension.","Avoid tying or pinning right after the perm."], prods:[1,2,7] },
+    color:{ title:"Color Care", emoji:"🎨", sub:"A care routine to keep your color vivid",
+      tips:["Avoid shampooing for 48 hours after coloring.","Use color-safe shampoo and treatment.","UV rays cause fading — wear a hat.","Rinse with lukewarm water, not hot.","Use a deep treatment once a week."],
+      cauts:["Pool or seawater right after coloring can fade your color.","Always use a heat protectant with hot styling tools.","Frequent shampooing accelerates fading."], prods:[2] },
+    bleach:{ title:"Bleach Care", emoji:"⚡", sub:"Intensive care for damaged hair",
+      tips:["Moisture is essential for bleached hair.","Use a gentle, low-irritation shampoo.","Replenish daily with oil or serum.","Air dry whenever possible.","Regular hair treatments are essential."],
+      cauts:["Wait at least 2 weeks between additional treatments (perm or re-bleach).","Minimize high-heat tool use.","Trim split ends regularly."], prods:[2,7] }
+  },
+  zh: {
+    perm:{ title:"烫发护理", emoji:"〰️", sub:"长时间保持卷度弹力的方法",
+      tips:["烫发后48小时内最好不要洗头。","洗发时请抓揉式清洗，避免拉直卷度。","推荐自然风干或使用风罩。","用手指代替梳子轻柔整理。","睡觉时可松松扎起或使用真丝枕套。"],
+      cauts:["高温吹风直接吹干会使卷度松散。","请勿用力梳理。","烫发后请勿立即扎起或用发夹固定。"], prods:[1,2,7] },
+    color:{ title:"染发护理", emoji:"🎨", sub:"长时间保持色彩的护理流程",
+      tips:["染发后48小时内请避免洗发。","请使用染发专用洗发水和护发素。","紫外线会导致褪色，请使用帽子防护。","请用温水而非热水洗发。","推荐每周一次深层护理。"],
+      cauts:["染发后立即接触泳池或海水会导致掉色。","使用高温造型工具时务必搭配热防护产品。","频繁洗发会加速掉色。"], prods:[2] },
+    bleach:{ title:"漂发护理", emoji:"⚡", sub:"受损发质的集中护理",
+      tips:["漂发后补水最为关键。","请使用温和低刺激洗发水。","每日使用护发油或精华液补水。","尽可能自然风干。","需要定期进行护发护理。"],
+      cauts:["追加美发（烫发、再次漂发）请间隔至少2周。","尽量减少使用高温工具。","请定期修剪开叉部分。"], prods:[2,7] }
+  },
+  ja: {
+    perm:{ title:"パーマケア", emoji:"〰️", sub:"カールの弾力を長く保つ方法",
+      tips:["パーマ後48時間は髪を洗わないことをおすすめします。","シャンプー時は握るように洗い、カールをほどかないでください。","自然乾燥またはディフューザーをおすすめします。","コームの代わりに指で優しく整えてください。","就寝時は緩く結ぶか、シルク枕の使用がおすすめです。"],
+      cauts:["高温ドライで直接乾燥するとカールがほどけることがあります。","強い力で梳かさないでください。","パーマ直後は結んだりピンで固定しないことをおすすめします。"], prods:[1,2,7] },
+    color:{ title:"カラーケア", emoji:"🎨", sub:"色味を長く保つケアルーティン",
+      tips:["カラー後48時間はシャンプーをお控えください。","カラー専用シャンプー・トリートメントをお使いください。","紫外線は退色の原因です。帽子をご活用ください。","熱いお湯よりぬるま湯がおすすめです。","週1回のディープトリートメントをおすすめします。"],
+      cauts:["カラー直後にプールや海水に触れると色落ちすることがあります。","高温ツール使用時は熱保護剤を必ずお使いください。","頻繁なシャンプーは色落ちを早めます。"], prods:[2] },
+    bleach:{ title:"ブリーチケア", emoji:"⚡", sub:"ダメージヘアの集中ケア",
+      tips:["ブリーチ毛は水分補給が最も大切です。","低刺激シャンプーをお使いください。","毎日オイルやセラムで水分を補給してください。","可能な限り自然乾燥をおすすめします。","定期的なヘアトリートメントが必要です。"],
+      cauts:["追加施術（パーマ・再ブリーチ）は最低2週間の間隔を空けてください。","高温ツールの使用を最小限に抑えてください。","枝毛は定期的にお手入れしてください。"], prods:[2,7] }
+  }
 };
 
 /* ─── Recommendation Logic ─── */
-function getRecommendation(ans) {
+function getRecommendation(ans, lang) {
   const { condition, desired, length, habit } = ans;
   let pids = []; let reasons = []; let interp = "";
-  const prods = P.ko;
+  const prods = (typeof P !== 'undefined' && (P[lang] || P.ko)) || [];
 
-  if (condition==="dry" && desired==="glossy") interp="건조함은 잡되 무겁지 않게, 윤기를 더해 깔끔하게 정리하는 스타일이 잘 어울립니다.";
-  else if (condition==="curl-loss") interp="컬이 쉽게 풀리는 타입이라 탄력을 유지해주는 제품이 필요합니다. 자연스러운 웨이브를 살려보세요.";
-  else if (condition==="flat") interp="볼륨이 부족한 모발이라 뿌리를 세우고 가볍게 움직이는 스타일이 잘 어울려요.";
-  else if (condition==="dry") interp="지금 모발은 수분 보충이 먼저입니다. 가볍게 윤기를 더하면서 결을 정리해보세요.";
-  else if (desired==="texture") interp="컬과 텍스처를 강조하면 개성 있는 스타일을 연출할 수 있어요.";
-  else if (desired==="hold") interp="형태감을 오래 유지하는 것이 포인트입니다. 고정력 있는 제품으로 마무리하세요.";
-  else if (desired==="natural") interp="지금 모발은 가볍게 살리면서 형태감을 잡아주는 스타일이 잘 어울립니다.";
-  else if (desired==="volume") interp="뿌리부터 볼륨을 살리면 전체적으로 공기감 있는 스타일이 완성됩니다.";
-  else interp="현재 모발 상태에 맞게 자연스럽고 건강한 느낌의 스타일을 추천드립니다.";
+  const INTERPS = {
+    ko: {
+      dry_glossy: "건조함은 잡되 무겁지 않게, 윤기를 더해 깔끔하게 정리하는 스타일이 잘 어울립니다.",
+      curl_loss: "컬이 쉽게 풀리는 타입이라 탄력을 유지해주는 제품이 필요합니다. 자연스러운 웨이브를 살려보세요.",
+      flat: "볼륨이 부족한 모발이라 뿌리를 세우고 가볍게 움직이는 스타일이 잘 어울려요.",
+      dry: "지금 모발은 수분 보충이 먼저입니다. 가볍게 윤기를 더하면서 결을 정리해보세요.",
+      texture: "컬과 텍스처를 강조하면 개성 있는 스타일을 연출할 수 있어요.",
+      hold: "형태감을 오래 유지하는 것이 포인트입니다. 고정력 있는 제품으로 마무리하세요.",
+      natural: "지금 모발은 가볍게 살리면서 형태감을 잡아주는 스타일이 잘 어울립니다.",
+      volume: "뿌리부터 볼륨을 살리면 전체적으로 공기감 있는 스타일이 완성됩니다.",
+      def: "현재 모발 상태에 맞게 자연스럽고 건강한 느낌의 스타일을 추천드립니다."
+    },
+    en: {
+      dry_glossy: "A style that tames dryness without weighing your hair down — adding gloss for a clean finish — suits you well.",
+      curl_loss: "Your curls loosen easily — products that hold elasticity will help. Let your natural wave shine.",
+      flat: "With less volume, a style that lifts the roots and moves lightly suits you well.",
+      dry: "Your hair needs moisture first. Add a light gloss and tidy the texture.",
+      texture: "Emphasizing curl and texture brings out a distinctive look.",
+      hold: "The point is keeping the shape all day — finish with a strong-hold product.",
+      natural: "A style that lifts gently while shaping suits your hair well.",
+      volume: "Lifting volume from the roots creates an airy overall style.",
+      def: "We recommend a natural, healthy-looking style for your current condition."
+    },
+    zh: {
+      dry_glossy: "适合控制干燥但不沉重，添加光泽、干净利落的造型风格。",
+      curl_loss: "您的卷度容易松散，需要保持弹力的产品，让自然的波浪展现魅力。",
+      flat: "您的发质蓬松度不足，从发根立起、轻盈律动的造型很合适。",
+      dry: "现在的发质需要先补水，轻轻添加光泽并整理纹理。",
+      texture: "强调卷度与质感能打造个性化的造型。",
+      hold: "关键是长时间保持造型感，请用定型力强的产品收尾。",
+      natural: "现在的发质适合轻盈打造、保持造型感的风格。",
+      volume: "从发根开始打造蓬松度，完成整体充满空气感的造型。",
+      def: "根据您当前的发质状态，推荐自然健康感的造型。"
+    },
+    ja: {
+      dry_glossy: "乾燥を抑えながら重くせず、ツヤを加えてすっきり仕上げるスタイルがよくお似合いです。",
+      curl_loss: "カールがほどけやすいタイプなので、弾力を保つ製品が必要です。自然なウェーブを活かしてみましょう。",
+      flat: "ボリュームが少ない髪質なので、根元を立ち上げて軽やかに動くスタイルがよくお似合いです。",
+      dry: "今のお髪はうるおい補給が最優先です。軽くツヤを加えながら毛流れを整えましょう。",
+      texture: "カールとテクスチャーを強調すると、個性的なスタイルが演出できます。",
+      hold: "形を長くキープすることがポイント。ホールド力のある製品で仕上げてください。",
+      natural: "今のお髪は、軽く活かしながら形を整えるスタイルがよくお似合いです。",
+      volume: "根元からボリュームを出すことで、全体にエアリーなスタイルが完成します。",
+      def: "現在のお髪の状態に合わせて、自然で健康的な印象のスタイルをおすすめします。"
+    }
+  };
+  const REASONS = {
+    ko: { glossy:"건조함을 잡고 윤기를 더하기 위해", curl:"컬 유지력을 높이고 탄력을 살리기 위해", volume:"뿌리 볼륨을 살려 공기감을 더하기 위해", hold_short:"형태를 잡고 자연스럽게 고정하기 위해", hold:"하루 종일 스타일을 유지하기 위해", matte:"매트한 질감으로 형태감을 살리기 위해", natural:"자연스러운 움직임을 유지하기 위해", basic:"모발 결을 정리하고 기본적인 윤기를 더하기 위해" },
+    en: { glossy:"To control dryness and add gloss", curl:"To strengthen curl hold and elasticity", volume:"To lift the roots and add airy volume", hold_short:"To shape and hold naturally", hold:"To keep the style all day", matte:"To bring out shape with a matte finish", natural:"To maintain natural movement", basic:"To smooth the texture and add basic gloss" },
+    zh: { glossy:"为了控制干燥并增添光泽", curl:"为了提升卷度持久力和弹力", volume:"为了打造发根蓬松、增添空气感", hold_short:"为了塑形并自然定型", hold:"为了一整天保持造型", matte:"用哑光质感打造造型感", natural:"为了保持自然的律动", basic:"整理发质纹理，增添基础光泽" },
+    ja: { glossy:"乾燥を抑えてツヤを加えるため", curl:"カールの持続力を高め、弾力を引き出すため", volume:"根元のボリュームを引き出し、エアリー感を加えるため", hold_short:"形を整え、自然に固定するため", hold:"一日中スタイルをキープするため", matte:"マットな質感で形を引き立てるため", natural:"自然な動きを保つため", basic:"毛流れを整え、基本的なツヤを加えるため" }
+  };
+  const I = INTERPS[lang] || INTERPS.ko;
+  const R = REASONS[lang] || REASONS.ko;
 
-  // Product selection (using product IDs 1-8 matching P.ko)
-  if (condition==="dry"||desired==="glossy") { pids.push(2); reasons.push("건조함을 잡고 윤기를 더하기 위해"); }
-  if (condition==="curl-loss"||desired==="texture") { pids.push(1); reasons.push("컬 유지력을 높이고 탄력을 살리기 위해"); }
-  if (condition==="flat"||desired==="volume") { pids.push(4); reasons.push("뿌리 볼륨을 살려 공기감을 더하기 위해"); }
-  if (desired==="hold"&&length==="short") { pids.push(3); reasons.push("형태를 잡고 자연스럽게 고정하기 위해"); }
-  if (desired==="hold"&&!pids.includes(5)&&!pids.includes(6)) { pids.push(5); reasons.push("하루 종일 스타일을 유지하기 위해"); }
-  if (length==="short"&&condition==="dull"&&!pids.includes(3)) { pids.push(3); reasons.push("매트한 질감으로 형태감을 살리기 위해"); }
-  if (length==="long"&&(desired==="natural"||desired==="glossy")&&!pids.includes(7)) { pids.push(7); reasons.push("자연스러운 움직임을 유지하기 위해"); }
-  if (condition==="dry"&&condition==="curl-loss") { if(!pids.includes(2)) pids.push(2); if(!pids.includes(1)) pids.push(1); }
-  if (condition==="flat"&&length==="long") { if(!pids.includes(4)) pids.push(4); if(!pids.includes(7)) pids.push(7); }
+  if (condition==="dry" && desired==="glossy") interp = I.dry_glossy;
+  else if (condition==="curl-loss") interp = I.curl_loss;
+  else if (condition==="flat") interp = I.flat;
+  else if (condition==="dry") interp = I.dry;
+  else if (desired==="texture") interp = I.texture;
+  else if (desired==="hold") interp = I.hold;
+  else if (desired==="natural") interp = I.natural;
+  else if (desired==="volume") interp = I.volume;
+  else interp = I.def;
 
+  if (condition==="dry"||desired==="glossy") { pids.push(2); reasons.push(R.glossy); }
+  if (condition==="curl-loss"||desired==="texture") { pids.push(1); reasons.push(R.curl); }
+  if (condition==="flat"||desired==="volume") { pids.push(4); reasons.push(R.volume); }
+  if (desired==="hold"&&length==="short") { pids.push(3); reasons.push(R.hold_short); }
+  if (desired==="hold"&&!pids.includes(5)&&!pids.includes(6)) { pids.push(5); reasons.push(R.hold); }
+  if (length==="short"&&condition==="dull"&&!pids.includes(3)) { pids.push(3); reasons.push(R.matte); }
+  if (length==="long"&&(desired==="natural"||desired==="glossy")&&!pids.includes(7)) { pids.push(7); reasons.push(R.natural); }
   if (habit==="none") { pids=pids.slice(0,1); reasons=reasons.slice(0,1); }
   pids=pids.slice(0,3); reasons=reasons.slice(0,3);
-  if (pids.length===0) { pids=[2]; reasons=["모발 결을 정리하고 기본적인 윤기를 더하기 위해"]; }
+  if (pids.length===0) { pids=[2]; reasons=[R.basic]; }
 
-  const stepDesc = {1:"컬 형태 살리기",2:"결 정리 & 윤기",3:"형태 잡기",4:"뿌리 볼륨 업",5:"강력 고정",6:"강력 고정",7:"자연스러운 유지",8:"자연스러운 유지"};
   const recProds = pids.map(id=>prods.find(p=>p.id===id)).filter(Boolean);
-  const steps = recProds.map((p,i)=>({step:i+1,product:p.name,action:stepDesc[p.id]||"스타일링",img:p.img}));
+  const stepDescMap = (typeof STEP_DESC_BY_LANG !== 'undefined') ? (STEP_DESC_BY_LANG[lang] || STEP_DESC_BY_LANG.ko) : {};
+  const steps = recProds.map((p,i)=>({step:i+1,product:p.name,action:stepDescMap[p.id]||"",img:p.img}));
   return { interp, pids, reasons, steps, recProds };
 }
 
-/* 🎨 CSS */
+
+const STEP_DESC_BY_LANG = {
+  ko: {1:"컬 형태 살리기",2:"결 정리 & 윤기",3:"형태 잡기",4:"뿌리 볼륨 업",5:"강력 고정",6:"강력 고정",7:"자연스러운 유지",8:"자연스러운 유지"},
+  en: {1:"Bring Out the Curl",2:"Smooth & Shine",3:"Shape & Hold",4:"Root Volume Up",5:"Strong Hold",6:"Strong Hold",7:"Natural Hold",8:"Natural Hold"},
+  zh: {1:"打造卷度",2:"整理纹理与光泽",3:"塑造造型",4:"发根蓬松",5:"强力定型",6:"强力定型",7:"自然保持",8:"自然保持"},
+  ja: {1:"カールを引き出す",2:"毛流れ&ツヤ",3:"形を整える",4:"根元ボリュームUP",5:"強力ホールド",6:"強力ホールド",7:"ナチュラルキープ",8:"ナチュラルキープ"}
+};
+const STEP_DETAIL_BY_LANG = {
+  ko: {1:"모발을 쥐어짜듯 아래에서 위로 올려주세요.",2:"적당량을 손바닥에 덜어 모발 중간~끝에 발라주세요.",3:"소량을 체온으로 녹인 후 원하는 방향으로 잡아주세요.",4:"뿌리 부분에 소량 뿌리고 손가락으로 세워주세요.",5:"20~30cm 거리에서 전체적으로 분사해주세요.",6:"20~30cm 거리에서 전체적으로 분사해주세요.",7:"30cm 거리에서 가볍게 2~3회 뿌려주세요.",8:"30cm 거리에서 가볍게 2~3회 뿌려주세요."},
+  en: {1:"Scrunch upward from bottom to top.",2:"Take a small amount in your palms and apply from mid-lengths to ends.",3:"Warm a small amount in your palms, then shape in the desired direction.",4:"Apply a little at the roots and lift with your fingers.",5:"Spray evenly from 20–30 cm away.",6:"Spray evenly from 20–30 cm away.",7:"Spray lightly 2–3 times from 30 cm away.",8:"Spray lightly 2–3 times from 30 cm away."},
+  zh: {1:"由下往上抓揉发束。",2:"取适量于掌心，涂抹于发中至发尾。",3:"少量于掌心温热后，按所需方向塑形。",4:"在发根少量喷洒，用手指立起。",5:"距离20–30厘米均匀喷洒。",6:"距离20–30厘米均匀喷洒。",7:"距离30厘米轻喷2–3次。",8:"距离30厘米轻喷2–3次。"},
+  ja: {1:"髪を握るように下から上へ持ち上げてください。",2:"適量を手のひらにとり、髪の中間〜毛先に塗布してください。",3:"少量を手のひらの体温で溶かし、お好みの方向に整えてください。",4:"根元に少量つけて、指で立ち上げてください。",5:"20〜30cmの距離から全体に均一にスプレーしてください。",6:"20〜30cmの距離から全体に均一にスプレーしてください。",7:"30cmの距離から軽く2〜3回スプレーしてください。",8:"30cmの距離から軽く2〜3回スプレーしてください。"}
+};
+const UI = {
+  ko: { diagTitle:"헤어 타입 진단", resultTitle:"진단 결과", routinePageTitle:"스타일링 루틴", carePageTitle:"관리 가이드",
+        resInterpLabel:"당신의 모발 타입", resSecRecProd:"추천 제품", resSecSteps:"사용 순서", resSecTip:"스타일링 팁", resSecCaut:"주의사항",
+        careSecMethod:"관리 방법", careWarnLabel:"알아두세요",
+        ctaStartRoutine:"이 루틴으로 시작하기",
+        routineTopLabel:"TODAY'S ROUTINE", routineMainTitle:"오늘의 스타일링 루틴", routineSubText:"순서대로 따라하면 고민 없이 완성됩니다.",
+        routineTipText:"💡 필요한 부분 중심으로 소량씩,\n마지막에 소량 추가하면 완성도가 높아집니다.",
+        resStaticTip1:"필요한 부분 중심으로 소량씩 사용하는 것이 중요합니다.", resStaticTip2:"마지막 단계에서 소량 추가하면 완성도가 높아집니다.",
+        resStaticCaut1:"과한 사용은 모발을 무겁게 만들 수 있습니다.", resStaticCaut2:"두피에는 닿지 않게 사용해주세요.",
+        carePageTopTitle:"관리 가이드" },
+  en: { diagTitle:"Hair Type Diagnosis", resultTitle:"Diagnosis Result", routinePageTitle:"Styling Routine", carePageTitle:"Care Guide",
+        resInterpLabel:"Your Hair Type", resSecRecProd:"Recommended Products", resSecSteps:"Usage Order", resSecTip:"Styling Tip", resSecCaut:"Precautions",
+        careSecMethod:"Care Method", careWarnLabel:"Good to Know",
+        ctaStartRoutine:"Start with This Routine",
+        routineTopLabel:"TODAY'S ROUTINE", routineMainTitle:"Today's Styling Routine", routineSubText:"Follow the steps in order — your look comes together effortlessly.",
+        routineTipText:"💡 Use small amounts on key areas;\nadding a little at the end elevates the finish.",
+        resStaticTip1:"Use small amounts focused on key areas.", resStaticTip2:"A small touch at the final step elevates the finish.",
+        resStaticCaut1:"Overuse can weigh your hair down.", resStaticCaut2:"Avoid contact with the scalp.",
+        carePageTopTitle:"Care Guide" },
+  zh: { diagTitle:"发质诊断", resultTitle:"诊断结果", routinePageTitle:"造型流程", carePageTitle:"护理指南",
+        resInterpLabel:"您的发质类型", resSecRecProd:"推荐产品", resSecSteps:"使用顺序", resSecTip:"造型小贴士", resSecCaut:"注意事项",
+        careSecMethod:"护理方法", careWarnLabel:"请留意",
+        ctaStartRoutine:"用此流程开始",
+        routineTopLabel:"TODAY'S ROUTINE", routineMainTitle:"今日的造型流程", routineSubText:"按顺序操作，造型轻松完成。",
+        routineTipText:"💡 重点部位少量使用，\n最后再少量追加可提升完成度。",
+        resStaticTip1:"重点针对需要的部位少量使用很重要。", resStaticTip2:"最后一步少量追加，能提升完成度。",
+        resStaticCaut1:"用量过多会使头发显得沉重。", resStaticCaut2:"请避免接触头皮。",
+        carePageTopTitle:"护理指南" },
+  ja: { diagTitle:"ヘアタイプ診断", resultTitle:"診断結果", routinePageTitle:"スタイリングルーティン", carePageTitle:"ケアガイド",
+        resInterpLabel:"あなたのヘアタイプ", resSecRecProd:"おすすめ製品", resSecSteps:"使用順序", resSecTip:"スタイリングのコツ", resSecCaut:"ご注意",
+        careSecMethod:"お手入れ方法", careWarnLabel:"ご確認ください",
+        ctaStartRoutine:"このルーティンで始める",
+        routineTopLabel:"TODAY'S ROUTINE", routineMainTitle:"今日のスタイリングルーティン", routineSubText:"順番通りに進めれば、迷わず仕上がります。",
+        routineTipText:"💡 必要な部分に少量ずつ、\n最後に少し足すと仕上がりが格上げされます。",
+        resStaticTip1:"必要な部分に少量ずつ使うことが大切です。", resStaticTip2:"最後に少量足すと仕上がりが格上げされます。",
+        resStaticCaut1:"使いすぎると髪が重くなることがあります。", resStaticCaut2:"頭皮には付けないようご使用ください。",
+        carePageTopTitle:"ケアガイド" }
+};
+
+/* 🎨 CSS *//* 🎨 CSS */
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap');
 :root{
@@ -400,6 +567,14 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
 .ddmh{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
 .ddmc{font-family:var(--fd);font-size:10px;color:var(--ink2);background:rgba(255,255,255,.7);border:1px solid var(--line);padding:6px 11px;border-radius:8px;text-decoration:none}
 
+.lang-btn{position:fixed;top:max(12px,env(safe-area-inset-top));right:12px;z-index:90;
+  height:32px;padding:0 12px 0 10px;border-radius:14px;
+  background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  display:inline-flex;align-items:center;gap:5px;
+  font-family:var(--fb);font-size:11.5px;font-weight:500;color:var(--ink2);
+  cursor:pointer;box-shadow:0 4px 14px rgba(20,20,45,.1);-webkit-tap-highlight-color:transparent}
+.lang-btn svg{flex-shrink:0}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 .rise{animation:rise .6s var(--ease) both}
 `;
@@ -408,6 +583,7 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
 const SI=()=><svg className="si" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>;
 const XI=()=><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>;
 const CaI=()=><svg className="dcai" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>;
+const GlobeI=()=><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 4 5.5 4 9s-1.5 6.5-4 9c-2.5-2.5-4-5.5-4-9s1.5-6.5 4-9z"/></svg>;
 const BkI=()=><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>;
 const Spark=()=><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4z"/></svg>;
 const Cal=()=><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"><rect x="3" y="4.5" width="18" height="17" rx="1.5"/><path d="M16 2v5M8 2v5M3 10h18"/></svg>;
@@ -449,8 +625,11 @@ const App = function App() {
     return mc && (!s || p.name.toLowerCase().includes(s) || p.short.toLowerCase().includes(s) || p.cat.toLowerCase().includes(s) || (p.brand && p.brand.toLowerCase().includes(s)) || p.feat.some(f => f.toLowerCase().includes(s)));
   });
 
-  const STEP_DESC = {1:"컬 형태 살리기",2:"결 정리 & 윤기",3:"형태 잡기",4:"뿌리 볼륨 업",5:"강력 고정",6:"강력 고정",7:"자연스러운 유지",8:"자연스러운 유지"};
-  const STEP_DETAIL = {1:"모발을 쥐어짜듯 아래에서 위로 올려주세요.",2:"적당량을 손바닥에 덜어 모발 중간~끝에 발라주세요.",3:"소량을 체온으로 녹인 후 원하는 방향으로 잡아주세요.",4:"뿌리 부분에 소량 뿌리고 손가락으로 세워주세요.",5:"20~30cm 거리에서 전체적으로 분사해주세요.",6:"20~30cm 거리에서 전체적으로 분사해주세요.",7:"30cm 거리에서 가볍게 2~3회 뿌려주세요.",8:"30cm 거리에서 가볍게 2~3회 뿌려주세요."};
+  const stepDesc = STEP_DESC_BY_LANG[lang] || STEP_DESC_BY_LANG.ko;
+  const stepDetail = STEP_DETAIL_BY_LANG[lang] || STEP_DETAIL_BY_LANG.ko;
+  const ui = UI[lang] || UI.ko;
+  const questions = QUESTIONS[lang] || QUESTIONS.ko;
+  const careData = CARE[lang] || CARE.ko;
 
   const openD = (p, s = null) => { setSel(p); setSTo(s); setMO(true); };
   const closeD = () => { setMO(false); setTimeout(() => { setSel(null); setSTo(null); }, 350); };
@@ -470,8 +649,8 @@ const App = function App() {
   const handleDiagAnswer = (key, val) => {
     const na = {...answers, [key]:val};
     setAnswers(na);
-    if (diagStep < QUESTIONS.length-1) setTimeout(()=>setDiagStep(diagStep+1),250);
-    else { const rec = getRecommendation(na); setRecommendation(rec); setTimeout(()=>goPage("result"),300); }
+    if (diagStep < questions.length-1) setTimeout(()=>setDiagStep(diagStep+1),250);
+    else { const rec = getRecommendation(na, lang); setRecommendation(rec); setTimeout(()=>goPage("result"),300); }
   };
   const goRoutine = (pids) => { setRoutineProds(pids); goPage("routine"); };
 
@@ -514,6 +693,10 @@ const App = function App() {
     </div>
   );
 
+  const LangBtn = () => {
+    const labels = { ko:'한국어', en:'English', zh:'中文', ja:'日本語' };
+    return <button className="lang-btn" onClick={()=>setLang(null)}><GlobeI/><span>{labels[lang]||'한국어'}</span></button>;
+  };
   const BNav = ({act}) => {
     const items = [["home","홈",HomeI,()=>goPage("home")],["diag","진단",SparkI,startDiag],["prod","제품",GridI,()=>goPage("products")],["rout","루틴",ClockI,()=>goRoutine(routineProds||[2,1,7])],["care","가이드",BookI,()=>goPage("care")]];
     return <div className="bnav">{items.map(([k,l,I,fn])=>(<button key={k} className={`bnav-item ${act===k?"act":""}`} onClick={fn}><I/><span>{l}</span></button>))}</div>;
@@ -566,15 +749,16 @@ const App = function App() {
 
   /* PAGE: Diagnosis */
   if (page === "diagnosis") {
-    const qData = QUESTIONS[diagStep];
-    const progress = ((diagStep+1)/QUESTIONS.length)*100;
+    const qData = questions[diagStep];
+    const progress = ((diagStep+1)/questions.length)*100;
     return (
       <><style>{css}</style>
       <div className="app">
-        <TopBar title="헤어 타입 진단"/>
+      <LangBtn/>
+        <TopBar title={ui.diagTitle}/>
         <div className="progress"><div className="progress-fill" style={{width:`${progress}%`}}/></div>
         <div className="diag-body" key={diagStep}>
-          <div className="diag-qn rise">Q{diagStep+1} / {QUESTIONS.length}</div>
+          <div className="diag-qn rise">Q{diagStep+1} / {questions.length}</div>
           <div className="diag-qt rise" style={{animationDelay:'.05s'}}>{qData.title}</div>
           <div className="diag-qs rise" style={{animationDelay:'.1s'}}>{qData.sub}</div>
           <div className="diag-opts">
@@ -592,17 +776,18 @@ const App = function App() {
   /* PAGE: Result */
   if (page === "result" && recommendation) {
     const { interp, pids, reasons, recProds } = recommendation;
-    const steps = recProds.map((p,i)=>({step:i+1,product:p,action:STEP_DESC[p.id]||"스타일링",detail:STEP_DETAIL[p.id]||""}));
+    const steps = recProds.map((p,i)=>({step:i+1,product:p,action:stepDesc[p.id]||"스타일링",detail:stepDetail[p.id]||""}));
     return (
       <><style>{css}</style>
       <div className="app">
-        <TopBar title="진단 결과"/>
+      <LangBtn/>
+        <TopBar title={ui.resultTitle}/>
         <div className="res-interp rise">
-          <div className="res-il">당신의 모발 타입</div>
+          <div className="res-il">{ui.resInterpLabel}</div>
           <div className="res-it">{interp}</div>
         </div>
         <div className="rsec">
-          <div className="rsec-h"><span>추천 제품</span></div>
+          <div className="rsec-h"><span>{ui.resSecRecProd}</span></div>
           {recProds.map((p,i)=>(
             <div key={p.id} className="rprod" onClick={()=>openD(p)}>
               <div className="rthumb"><img src={p.img} alt={p.name}/></div>
@@ -612,7 +797,7 @@ const App = function App() {
           ))}
         </div>
         <div className="rsec">
-          <div className="rsec-h"><span>사용 순서</span></div>
+          <div className="rsec-h"><span>{ui.resSecSteps}</span></div>
           {steps.map((s,i)=>(
             <div key={i} className="rstep">
               <div className="rstep-l"><div className="rsnum">{s.step}</div>{i<steps.length-1 && <div className="rsline"/>}</div>
@@ -621,16 +806,16 @@ const App = function App() {
           ))}
         </div>
         <div className="rsec">
-          <div className="rsec-h"><span>스타일링 팁</span></div>
-          <div className="rcard"><p>필요한 부분 중심으로 소량씩 사용하는 것이 중요합니다.</p><p>마지막 단계에서 소량 추가하면 완성도가 높아집니다.</p></div>
+          <div className="rsec-h"><span>{ui.resSecTip}</span></div>
+          <div className="rcard"><p>{ui.resStaticTip1}</p><p>{ui.resStaticTip2}</p></div>
         </div>
         <div className="rsec">
-          <div className="rsec-h"><span>주의사항</span></div>
-          <div className="rcard"><p>과한 사용은 모발을 무겁게 만들 수 있습니다.</p><p>두피에는 닿지 않게 사용해주세요.</p></div>
+          <div className="rsec-h"><span>{ui.resSecCaut}</span></div>
+          <div className="rcard"><p>{ui.resStaticCaut1}</p><p>{ui.resStaticCaut2}</p></div>
         </div>
         <div className="ractions">
-          <button className="r-cta" onClick={()=>goRoutine(pids)}>이 루틴으로 시작하기</button>
-          <button className="r-cta2" onClick={()=>goPage("products")}>전체 제품 보기</button>
+          <button className="r-cta" onClick={()=>goRoutine(pids)}>{ui.ctaStartRoutine}</button>
+          <button className="r-cta2" onClick={()=>goPage("products")}>{allProdsLabel}</button>
         </div>
         <Modal/>
       </div></>
@@ -644,22 +829,23 @@ const App = function App() {
     return (
       <><style>{css}</style>
       <div className="app">
-        <TopBar title="스타일링 루틴"/>
+      <LangBtn/>
+        <TopBar title={ui.routinePageTitle}/>
         <div className="rout-title-area">
-          <div className="rout-label">TODAY'S ROUTINE</div>
-          <div className="rout-title rise">오늘의 스타일링 루틴</div>
-          <div className="rout-sub rise" style={{animationDelay:'.05s'}}>순서대로 따라하면 고민 없이 완성됩니다.</div>
+          <div className="rout-label">{ui.routineTopLabel}</div>
+          <div className="rout-title rise">{ui.routineMainTitle}</div>
+          <div className="rout-sub rise" style={{animationDelay:'.05s'}}>{ui.routineSubText}</div>
         </div>
         <div className="rsec">
           {rProds.map((p,i)=>(
             <div key={p.id} className="rstep rise" style={{animationDelay:`${.1+i*.06}s`}}>
               <div className="rstep-l"><div className="rsnum">{i+1}</div>{i<rProds.length-1 && <div className="rsline"/>}</div>
-              <div className="rstep-card" onClick={()=>openD(p)}><div className="rs-name">{p.name}</div><div className="rs-act">{STEP_DESC[p.id]||"스타일링"}</div><div className="rs-detail">{STEP_DETAIL[p.id]||""}</div></div>
+              <div className="rstep-card" onClick={()=>openD(p)}><div className="rs-name">{p.name}</div><div className="rs-act">{stepDesc[p.id]||"스타일링"}</div><div className="rs-detail">{stepDetail[p.id]||""}</div></div>
             </div>
           ))}
         </div>
         <div className="rsec">
-          <div className="rcard"><p>💡 필요한 부분 중심으로 소량씩,<br/>마지막에 소량 추가하면 완성도가 높아집니다.</p></div>
+          <div className="rcard"><p style={{whiteSpace:"pre-line"}}>{ui.routineTipText}</p></div>
         </div>
         <Modal/>
         <BNav act="rout"/>
@@ -669,22 +855,23 @@ const App = function App() {
 
   /* PAGE: Care */
   if (page === "care") {
-    const guide = CARE[careTab];
-    const careProds = guide.prods.map(id=>koProds.find(p=>p.id===id)).filter(Boolean);
+    const guide = careData[careTab];
+    const careProds = guide.prods.map(id=>(P[lang]||P.ko).find(p=>p.id===id)).filter(Boolean);
     return (
       <><style>{css}</style>
       <div className="app">
-        <TopBar title="관리 가이드"/>
-        <div className="care-title">관리 가이드</div>
+      <LangBtn/>
+        <TopBar title={ui.carePageTitle}/>
+        <div className="care-title">{ui.carePageTopTitle}</div>
         <div className="care-tabs">
-          {Object.entries(CARE).map(([key,g])=>(
+          {Object.entries(careData).map(([key,g])=>(
             <button key={key} className={`care-tab ${careTab===key?"a":""}`} onClick={()=>setCareTab(key)}>{g.emoji} {g.title}</button>
           ))}
         </div>
         <div key={careTab}>
           <div className="care-sec-title rise">{guide.title}</div>
           <div className="care-sec-sub rise" style={{animationDelay:'.05s'}}>{guide.sub}</div>
-          <div className="rsec"><div className="rsec-h"><span>관리 방법</span></div></div>
+          <div className="rsec"><div className="rsec-h"><span>{ui.careSecMethod}</span></div></div>
           <div className="care-list">
             {guide.tips.map((tip,i)=>(
               <div key={i} className="care-tip rise" style={{animationDelay:`${.1+i*.04}s`}}>
@@ -693,12 +880,12 @@ const App = function App() {
               </div>
             ))}
           </div>
-          <div className="rsec"><div className="rsec-h"><span>주의사항</span></div></div>
+          <div className="rsec"><div className="rsec-h"><span>{ui.resSecCaut}</span></div></div>
           <div className="care-warn">
-            <div className="care-warn-h"><CaI/><span className="care-warn-l">알아두세요</span></div>
+            <div className="care-warn-h"><CaI/><span className="care-warn-l">{ui.careWarnLabel}</span></div>
             {guide.cauts.map((c,i)=><p key={i}>– {c}</p>)}
           </div>
-          <div className="rsec"><div className="rsec-h"><span>추천 제품</span></div>
+          <div className="rsec"><div className="rsec-h"><span>{ui.resSecRecProd}</span></div>
             {careProds.map(p=>(
               <div key={p.id} className="rprod" onClick={()=>openD(p)}>
                 <div className="rthumb"><img src={p.img} alt={p.name}/></div>
@@ -718,6 +905,7 @@ const App = function App() {
   if (page === "products") return (
     <><style>{css}</style>
     <div className="app">
+      <LangBtn/>
       <header className="hero">
         <img className="herologo" src={LOGO_SRC} alt="DAY:MEAN"/>
         <div className="hdesc">Styling Guide</div>
@@ -766,6 +954,7 @@ const App = function App() {
   return (
     <><style>{css}</style>
     <div className="app">
+      <LangBtn/>
       <header className="hero">
         <img className="herologo" src={LOGO_SRC} alt="DAY:MEAN"/>
         <div className="hdesc">Styling Guide</div>
