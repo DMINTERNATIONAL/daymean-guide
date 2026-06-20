@@ -671,6 +671,7 @@ const App = function App() {
 
   const bookLabel = lang === 'zh' ? '立即预约' : lang === 'ja' ? '予約する' : lang === 'en' ? 'Book Appointment' : '네이버 예약하기';
   const oilLabel = lang === 'zh' ? '购买抛光油' : lang === 'ja' ? 'オイル購入' : lang === 'en' ? 'Buy Polish Oil' : '폴리쉬오일 구매';
+  const oilUrl = lang === 'ko' ? 'https://buly.kr/FAeSk2F' : 'https://global.hemeko.com/us/store/products/989';
   const findLabel = lang === 'zh' ? '找到适合我的产品' : lang === 'ja' ? '私に合う製品を見つける' : lang === 'en' ? 'Find products for me' : '내 머리에 맞는 제품 찾기';
   const allProdsLabel = lang === 'zh' ? '查看全部产品' : lang === 'ja' ? '全製品を見る' : lang === 'en' ? 'View all products' : '전체 제품 보기';
   const routineTitle = lang === 'zh' ? '造型流程' : lang === 'ja' ? 'スタイリングルーティン' : lang === 'en' ? 'Styling Routine' : '스타일링 루틴';
@@ -735,7 +736,7 @@ const App = function App() {
     <div className="booking">
       <a className="book-main" href={extraLinks.booking} target="_blank" rel="noopener noreferrer"><Cal/>{bookLabel}</a>
       <div className="book-sub">
-        <a href={extraLinks.airua} target="_blank" rel="noopener noreferrer"><Bag/>{oilLabel}</a>
+        <a href={oilUrl} target="_blank" rel="noopener noreferrer"><Bag/>{oilLabel}</a>
         <div className="wc"><Chat/>WeChat · {extraLinks.wechat}</div>
       </div>
     </div>
