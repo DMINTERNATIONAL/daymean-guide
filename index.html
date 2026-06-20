@@ -276,7 +276,7 @@ const UI = {
         routineTipText:"💡 필요한 부분 중심으로 소량씩,\n마지막에 소량 추가하면 완성도가 높아집니다.",
         resStaticTip1:"필요한 부분 중심으로 소량씩 사용하는 것이 중요합니다.", resStaticTip2:"마지막 단계에서 소량 추가하면 완성도가 높아집니다.",
         resStaticCaut1:"과한 사용은 모발을 무겁게 만들 수 있습니다.", resStaticCaut2:"두피에는 닿지 않게 사용해주세요.",
-        carePageTopTitle:"관리 가이드" },
+        carePageTopTitle:"관리 가이드", bnavHome:"홈", bnavDiag:"진단", bnavProd:"제품", bnavRout:"루틴", bnavCare:"가이드" },
   en: { diagTitle:"Hair Type Diagnosis", resultTitle:"Diagnosis Result", routinePageTitle:"Styling Routine", carePageTitle:"Care Guide",
         resInterpLabel:"Your Hair Type", resSecRecProd:"Recommended Products", resSecSteps:"Usage Order", resSecTip:"Styling Tip", resSecCaut:"Precautions",
         careSecMethod:"Care Method", careWarnLabel:"Good to Know",
@@ -285,7 +285,7 @@ const UI = {
         routineTipText:"💡 Use small amounts on key areas;\nadding a little at the end elevates the finish.",
         resStaticTip1:"Use small amounts focused on key areas.", resStaticTip2:"A small touch at the final step elevates the finish.",
         resStaticCaut1:"Overuse can weigh your hair down.", resStaticCaut2:"Avoid contact with the scalp.",
-        carePageTopTitle:"Care Guide" },
+        carePageTopTitle:"Care Guide", bnavHome:"Home", bnavDiag:"Diagnosis", bnavProd:"Products", bnavRout:"Routine", bnavCare:"Guide" },
   zh: { diagTitle:"发质诊断", resultTitle:"诊断结果", routinePageTitle:"造型流程", carePageTitle:"护理指南",
         resInterpLabel:"您的发质类型", resSecRecProd:"推荐产品", resSecSteps:"使用顺序", resSecTip:"造型小贴士", resSecCaut:"注意事项",
         careSecMethod:"护理方法", careWarnLabel:"请留意",
@@ -294,7 +294,7 @@ const UI = {
         routineTipText:"💡 重点部位少量使用，\n最后再少量追加可提升完成度。",
         resStaticTip1:"重点针对需要的部位少量使用很重要。", resStaticTip2:"最后一步少量追加，能提升完成度。",
         resStaticCaut1:"用量过多会使头发显得沉重。", resStaticCaut2:"请避免接触头皮。",
-        carePageTopTitle:"护理指南" },
+        carePageTopTitle:"护理指南", bnavHome:"主页", bnavDiag:"诊断", bnavProd:"产品", bnavRout:"流程", bnavCare:"指南" },
   ja: { diagTitle:"ヘアタイプ診断", resultTitle:"診断結果", routinePageTitle:"スタイリングルーティン", carePageTitle:"ケアガイド",
         resInterpLabel:"あなたのヘアタイプ", resSecRecProd:"おすすめ製品", resSecSteps:"使用順序", resSecTip:"スタイリングのコツ", resSecCaut:"ご注意",
         careSecMethod:"お手入れ方法", careWarnLabel:"ご確認ください",
@@ -303,7 +303,7 @@ const UI = {
         routineTipText:"💡 必要な部分に少量ずつ、\n最後に少し足すと仕上がりが格上げされます。",
         resStaticTip1:"必要な部分に少量ずつ使うことが大切です。", resStaticTip2:"最後に少量足すと仕上がりが格上げされます。",
         resStaticCaut1:"使いすぎると髪が重くなることがあります。", resStaticCaut2:"頭皮には付けないようご使用ください。",
-        carePageTopTitle:"ケアガイド" }
+        carePageTopTitle:"ケアガイド", bnavHome:"ホーム", bnavDiag:"診断", bnavProd:"製品", bnavRout:"ルーティン", bnavCare:"ガイド" }
 };
 
 /* 🎨 CSS */
@@ -698,7 +698,7 @@ const App = function App() {
     return <button className="lang-btn" onClick={()=>setLang(null)}><GlobeI/><span>{labels[lang]||'한국어'}</span></button>;
   };
   const BNav = ({act}) => {
-    const items = [["home","홈",HomeI,()=>goPage("home")],["diag","진단",SparkI,startDiag],["prod","제품",GridI,()=>goPage("products")],["rout","루틴",ClockI,()=>goRoutine(routineProds||[2,1,7])],["care","가이드",BookI,()=>goPage("care")]];
+    const items = [["home",ui.bnavHome,HomeI,()=>goPage("home")],["diag",ui.bnavDiag,SparkI,startDiag],["prod",ui.bnavProd,GridI,()=>goPage("products")],["rout",ui.bnavRout,ClockI,()=>goRoutine(routineProds||[2,1,7])],["care",ui.bnavCare,BookI,()=>goPage("care")]];
     return <div className="bnav">{items.map(([k,l,I,fn])=>(<button key={k} className={`bnav-item ${act===k?"act":""}`} onClick={fn}><I/><span>{l}</span></button>))}</div>;
   };
 
