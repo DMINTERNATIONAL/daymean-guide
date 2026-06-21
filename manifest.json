@@ -1,0 +1,20 @@
+{
+  "name": "DAY:MEAN Styling Guide",
+  "short_name": "DAY:MEAN",
+  "description": "내 헤어스타일에 맞는 제품과 사용법을 한눈에. Find the right product and styling tips for your hair.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ECECEF",
+  "theme_color": "#ECECEF",
+  "lang": "ko",
+  "dir": "ltr",
+  "icons": [
+    { "src": "favicon-32.png", "sizes": "32x32", "type": "image/png" },
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" },
+    { "src": "favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" }
+  ],
+  "categories": ["lifestyle", "beauty"]
+}
