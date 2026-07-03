@@ -850,6 +850,18 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
 .book-sub2 a:active,.book-sub2 button:active{transform:scale(.98)}
 .book-sub2 a span,.book-sub2 button span{line-height:1}
 .book-sub2 .bk-oil{color:var(--ink);font-size:12.5px;font-weight:500;letter-spacing:.3px;background:rgba(255,255,255,.72)}
+
+/* Book Entries — 상단 진입 버튼 (시술 메뉴 · 매장 · 디렉터 · FAQ) */
+.book-entries{margin:0 0 12px;display:flex;flex-direction:column;gap:8px}
+.book-entry{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  width:100%;padding:18px;border-radius:13px;
+  background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  color:var(--ink);font-family:inherit;cursor:pointer;
+  box-shadow:0 6px 16px rgba(20,20,45,.07),inset 0 1px 0 rgba(255,255,255,.95);
+  -webkit-tap-highlight-color:transparent;transition:transform .2s ease}
+.book-entry:active{transform:scale(.98)}
+.book-entry .be-main{font-size:14px;font-weight:500;letter-spacing:.2px;color:var(--ink);line-height:1.2}
+.book-entry .be-hint{font-size:11px;letter-spacing:.3px;color:var(--ink3);line-height:1.2}
 .book-info-row button{justify-content:center;gap:10px;padding:13px 14px}
 .book-info-row .info-ic{color:#E04545;display:flex;align-items:center}
 .book-info-row .menu-ic{color:#7A4DD9;display:flex;align-items:center}
@@ -1516,6 +1528,24 @@ const App = function App() {
 
   const Booking = () => (
     <div className="booking">
+      <div className="book-entries">
+        <button className="book-entry" type="button" onClick={()=>{ setMenuCat("set"); goPage("menu"); }}>
+          <span className="be-main">{menuEntryLabel}</span>
+          <span className="be-hint">{menuEntryHint}</span>
+        </button>
+        <button className="book-entry" type="button" onClick={()=>goPage("info")}>
+          <span className="be-main">{infoEntryLabel}</span>
+          <span className="be-hint">{infoEntryHint}</span>
+        </button>
+        <button className="book-entry" type="button" onClick={()=>goPage("about")}>
+          <span className="be-main">{aboutEntryLabel}</span>
+          <span className="be-hint">{aboutEntryHint}</span>
+        </button>
+        <button className="book-entry" type="button" onClick={()=>{ setFaqOpenIdx(null); goPage("faq"); }}>
+          <span className="be-main">{faqEntryLabel}</span>
+          <span className="be-hint">{faqEntryHint}</span>
+        </button>
+      </div>
       <a className="book-main" href={extraLinks.booking} target="_blank" rel="noopener noreferrer"><Cal/>{bookLabel}</a>
       <div className="book-sub">
         <a className="bk-chat bk-kakao" href={extraLinks.kakao} target="_blank" rel="noopener noreferrer">
@@ -1529,26 +1559,6 @@ const App = function App() {
       </div>
       <div className="book-sub2">
         <a className="bk-oil" href={oilUrl} target="_blank" rel="noopener noreferrer"><span>{oilLabel}</span></a>
-      </div>
-      <div className="book-sub2 book-info-row">
-        <button type="button" onClick={()=>{ setMenuCat("set"); goPage("menu"); }}>
-          <span className="bk-text"><span className="bk-main">{menuEntryLabel}</span><span className="bk-hint">{menuEntryHint}</span></span>
-        </button>
-      </div>
-      <div className="book-sub2 book-info-row">
-        <button type="button" onClick={()=>goPage("info")}>
-          <span className="bk-text"><span className="bk-main">{infoEntryLabel}</span><span className="bk-hint">{infoEntryHint}</span></span>
-        </button>
-      </div>
-      <div className="book-sub2 book-info-row">
-        <button type="button" onClick={()=>goPage("about")}>
-          <span className="bk-text"><span className="bk-main">{aboutEntryLabel}</span><span className="bk-hint">{aboutEntryHint}</span></span>
-        </button>
-      </div>
-      <div className="book-sub2 book-info-row">
-        <button type="button" onClick={()=>{ setFaqOpenIdx(null); goPage("faq"); }}>
-          <span className="bk-text"><span className="bk-main">{faqEntryLabel}</span><span className="bk-hint">{faqEntryHint}</span></span>
-        </button>
       </div>
     </div>
   );
