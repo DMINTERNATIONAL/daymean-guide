@@ -849,6 +849,7 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
   transition:transform .2s ease}
 .book-sub2 a:active,.book-sub2 button:active{transform:scale(.98)}
 .book-sub2 a span,.book-sub2 button span{line-height:1}
+.book-sub2 .bk-oil{color:var(--ink);font-size:12.5px;font-weight:500;letter-spacing:.3px;background:rgba(255,255,255,.72)}
 .book-info-row button{justify-content:center;gap:10px;padding:13px 14px}
 .book-info-row .info-ic{color:#E04545;display:flex;align-items:center}
 .book-info-row .menu-ic{color:#7A4DD9;display:flex;align-items:center}
@@ -1527,7 +1528,7 @@ const App = function App() {
         </button>
       </div>
       <div className="book-sub2">
-        <a href={oilUrl} target="_blank" rel="noopener noreferrer"><span>{oilLabel}</span></a>
+        <a className="bk-oil" href={oilUrl} target="_blank" rel="noopener noreferrer"><span>{oilLabel}</span></a>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>{ setMenuCat("set"); goPage("menu"); }}>
