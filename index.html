@@ -849,7 +849,7 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
   transition:transform .2s ease}
 .book-sub2 a:active,.book-sub2 button:active{transform:scale(.98)}
 .book-sub2 a span,.book-sub2 button span{line-height:1}
-.book-info-row button{justify-content:flex-start;gap:10px;padding:12px 14px}
+.book-info-row button{justify-content:center;gap:10px;padding:13px 14px}
 .book-info-row .info-ic{color:#E04545;display:flex;align-items:center}
 .book-info-row .menu-ic{color:#7A4DD9;display:flex;align-items:center}
 .book-info-row .faq-ic{color:#2C8FE4;display:flex;align-items:center}
@@ -894,10 +894,10 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
   box-shadow:0 4px 12px rgba(221,42,123,.22)}
 .home-insta-name{font-size:12px;font-weight:500;color:var(--ink);letter-spacing:-.1px}
 .home-insta-handle{font-family:var(--fd);font-size:9px;letter-spacing:.5px;color:var(--ink3);word-break:break-all;line-height:1.2}
-.home-insta-card.is-lead{grid-column:1 / -1;flex-direction:row;gap:14px;padding:16px 20px;justify-content:flex-start;text-align:left}
+.home-insta-card.is-lead{grid-column:1 / -1;flex-direction:row;gap:14px;padding:16px 20px;justify-content:center;text-align:center}
 .home-insta-card.is-lead .home-insta-icon{width:44px;height:44px;margin-bottom:0;border-radius:13px}
 .home-insta-card.is-lead .home-insta-icon svg{width:24px;height:24px}
-.home-insta-text{display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.home-insta-text{display:flex;flex-direction:column;gap:3px;align-items:center;min-width:0}
 .home-insta-role{font-family:var(--fd);font-size:9px;letter-spacing:2px;color:var(--ink3);text-transform:uppercase;line-height:1}
 .home-insta-card.is-lead .home-insta-name{font-size:14px;line-height:1.2}
 .home-insta-card.is-lead .home-insta-handle{font-size:10px}
@@ -921,10 +921,9 @@ body{font-family:var(--fb);color:var(--ink);-webkit-font-smoothing:antialiased;o
 .faq-cta-kakao{background:rgba(255,255,255,.7);color:var(--ink2);border:1px solid rgba(0,0,0,.05)}
 .faq-cta-kakao svg{color:#E5B800}
 .faq-cta-dm{background:linear-gradient(135deg,#F58529,#DD2A7B,#8134AF);color:#fff;border:none;box-shadow:0 4px 12px rgba(221,42,123,.25)}
-.book-info-row .bk-text{flex:1;display:flex;flex-direction:column;align-items:flex-start;gap:2px;line-height:1;text-align:left}
+.book-info-row .bk-text{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;text-align:center}
 .book-info-row .bk-main{font-size:12px;letter-spacing:.2px;font-weight:500;line-height:1.15;color:var(--ink)}
 .book-info-row .bk-hint{font-size:10px;letter-spacing:.3px;color:var(--ink3);line-height:1.1}
-.book-info-row .info-arrow{font-size:14px;color:var(--ink3);margin-left:auto;flex-shrink:0}
 
 /* Info Page */
 .info-wrap{padding:6px 16px 100px}
@@ -1534,28 +1533,24 @@ const App = function App() {
         <button type="button" onClick={()=>{ setMenuCat("set"); goPage("menu"); }}>
           <span className="ic menu-ic"><Bag/></span>
           <span className="bk-text"><span className="bk-main">{menuEntryLabel}</span><span className="bk-hint">{menuEntryHint}</span></span>
-          <span className="info-arrow">→</span>
         </button>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>goPage("info")}>
           <span className="ic info-ic"><Pin/></span>
           <span className="bk-text"><span className="bk-main">{infoEntryLabel}</span><span className="bk-hint">{infoEntryHint}</span></span>
-          <span className="info-arrow">→</span>
         </button>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>goPage("about")}>
           <span className="ic about-ic"><Spark/></span>
           <span className="bk-text"><span className="bk-main">{aboutEntryLabel}</span><span className="bk-hint">{aboutEntryHint}</span></span>
-          <span className="info-arrow">→</span>
         </button>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>{ setFaqOpenIdx(null); goPage("faq"); }}>
           <span className="ic faq-ic"><Chat/></span>
           <span className="bk-text"><span className="bk-main">{faqEntryLabel}</span><span className="bk-hint">{faqEntryHint}</span></span>
-          <span className="info-arrow">→</span>
         </button>
       </div>
     </div>
