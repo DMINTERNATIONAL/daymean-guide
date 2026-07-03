@@ -1409,7 +1409,7 @@ const App = function App() {
   const goRoutine = (pids) => { setRoutineProds(pids); goPage("routine"); };
 
   const bookLabel = lang === 'zh' ? '立即预约' : lang === 'ja' ? '予約する' : lang === 'en' ? 'Book Appointment' : '네이버 예약하기';
-  const oilLabel = lang === 'zh' ? '购买抛光油' : lang === 'ja' ? 'オイル購入' : lang === 'en' ? 'Buy Polish Oil' : '폴리쉬오일 구매';
+  const oilLabel = lang === 'zh' ? '购买 EIRUA 香氛抛光油' : lang === 'ja' ? 'EIRUA パフューム ポリッシュオイル購入' : lang === 'en' ? 'Buy EIRUA Perfume Polish Oil' : 'EIRUA 퍼퓸 폴리쉬오일 구매';
   const oilUrl = lang === 'ko' ? 'https://buly.kr/FAeSk2F' : 'https://global.hemeko.com/us/store/products/989';
   const kakaoLabel = lang === 'zh' ? 'Kakao咨询' : lang === 'ja' ? 'カカオで相談' : lang === 'en' ? 'Chat on Kakao' : '카톡 문의';
   const kakaoHint = lang === 'zh' ? '1:1咨询' : lang === 'ja' ? '1:1チャット' : lang === 'en' ? '1:1 chat' : '1:1 채팅';
@@ -1527,29 +1527,25 @@ const App = function App() {
         </button>
       </div>
       <div className="book-sub2">
-        <a href={oilUrl} target="_blank" rel="noopener noreferrer"><Bag/><span>{oilLabel}</span></a>
+        <a href={oilUrl} target="_blank" rel="noopener noreferrer"><span>{oilLabel}</span></a>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>{ setMenuCat("set"); goPage("menu"); }}>
-          <span className="ic menu-ic"><Bag/></span>
           <span className="bk-text"><span className="bk-main">{menuEntryLabel}</span><span className="bk-hint">{menuEntryHint}</span></span>
         </button>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>goPage("info")}>
-          <span className="ic info-ic"><Pin/></span>
           <span className="bk-text"><span className="bk-main">{infoEntryLabel}</span><span className="bk-hint">{infoEntryHint}</span></span>
         </button>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>goPage("about")}>
-          <span className="ic about-ic"><Spark/></span>
           <span className="bk-text"><span className="bk-main">{aboutEntryLabel}</span><span className="bk-hint">{aboutEntryHint}</span></span>
         </button>
       </div>
       <div className="book-sub2 book-info-row">
         <button type="button" onClick={()=>{ setFaqOpenIdx(null); goPage("faq"); }}>
-          <span className="ic faq-ic"><Chat/></span>
           <span className="bk-text"><span className="bk-main">{faqEntryLabel}</span><span className="bk-hint">{faqEntryHint}</span></span>
         </button>
       </div>
@@ -2046,11 +2042,9 @@ const App = function App() {
       </div>
       <div className="home-cards">
         <div className="home-card" onClick={()=>goRoutine([2,1,7])}>
-          <div className="home-card-emoji">✨</div>
           <div><div className="home-card-t">{routineTitle}</div><div className="home-card-s">{routineSub}</div></div>
         </div>
         <div className="home-card" onClick={()=>goPage("care")}>
-          <div className="home-card-emoji">📖</div>
           <div><div className="home-card-t">{careTitle}</div><div className="home-card-s">{careSub}</div></div>
         </div>
       </div>
